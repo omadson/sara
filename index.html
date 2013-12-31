@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Sara by omadson</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Sara</h1>
+        <h2>Sistema de Automação Residencial com a utilização da plataforma Arduíno</h2>
+        <a href="https://github.com/omadson/sara" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="sara" class="anchor" href="#sara"><span class="octicon octicon-link"></span></a><a href="http://github.com/omadson/sara">SARA</a>
+</h1>
+
+<p>Sistema de Automação Residencial com a utilização da plataforma Arduíno.</p>
+
+<p>Nesse trabalho é apresentado um sistema de baixo custo que pode ser empregado em automação residencial, visando facilitar o dia a dia de pessoas comuns ou com necessidades especiais, solucionando problemas frequentes e aparentemente comuns. O usuário utiliza uma aplicação web como interface de controle, um servidor web como centralizador de processamento e sensores e atuadores como controladores de dispositivos. O usuário poderá acessar o sistema através de uma rede local, ou em qualquer lugar do mundo, pela Internet. O propósito deste projeto é controlar os eletroeletrônicos de um ambiente residencial através de um sistema totalmente informatizado, usando para isto diversas ferramentas open source, a fim de que o sistema possa estar em contínuo estado de evolução.</p>
+
+<h2>
+<a name="materiais-e-m%C3%A9todos" class="anchor" href="#materiais-e-m%C3%A9todos"><span class="octicon octicon-link"></span></a>Materiais e métodos</h2>
+
+<p>O objetivo do trabalho é prover ao usuário o controle de alguns sistemas eletroeletrônicos de sua residência à distância, através de uma interface computadorizada.</p>
+
+<p>Todo o projeto foi implementado (<em>software</em> e <em>hardware</em>) utilizando ferramentas <em>open source</em>.</p>
+
+<p>O sistema é composto por três elementos: <strong>controladores de dispositivos</strong>, <strong>interfaces de controle</strong> e um <strong>servidor central</strong>.</p>
+
+<p>Para ilustrar o funcionamento do sistema, foi elaborado um diagrama, conforme exibido na figura abaixo.</p>
+
+<p><img src="http://omadson.files.wordpress.com/2013/12/topologia.png" alt="Topologia do sistema"></p>
+
+<p>Como pode ser visualizado na figura acima, os usuários podem acessar a interface de controle (hospedada no servidor) através de uma rede local ou utilizando a <em>internet</em> e executar as ações desejadas. Os comandos acionados pelos usuários a partir da aplicação hospedada no servidor são enviadas ao <em>Arduino</em> através de comunicação serial, que por sua vez interpreta a informação recebida e executa o comando esperado.</p>
+
+<h3>
+<a name="software" class="anchor" href="#software"><span class="octicon octicon-link"></span></a>Software</h3>
+
+<p>As interfaces de controle são baseadas em um aplicativo web implementado, utilizando o modelo MVC (Model-view-controller) de desenvolvimento de software, atualmente considerado uma “Arquitetura padrão” utilizada em engenharia de software. Para construção do mesmo foram utilizadas duas tecnologias: JQuery Mobile e PHP. JQuery mobile é um framework para desenvolvimento web otimizado para interação por toque e que se destina à criação de aplicações para smartphones e tablets. Seu desenvolvimento está voltado para fornecer mecanismos capazes de criar sistemas unificados de interface de usuário, baseados em HTML5 e CSS3, capazes de ser funcionais em todas as plataformas móveis e que tem como base de construção as bibliotecas JQuery e JQuery UI (SILVA, 2010). </p>
+
+<p>O PHP (um acrônimo recursivo para "PHP: Hypertext Preprocessor", originalmente Personal Home Page) é uma linguagem de programação executada de forma interpretada e de código aberto, usada para o desenvolvimento de aplicações presentes e atuantes no lado do servidor, capazes de gerar conteúdo dinâmico na World Wide Web (ACHOUR, 2012). Figura entre as primeiras linguagens passíveis de inserção em documentos HTML, dispensando em muitos casos o uso de arquivos externos para eventuais processamentos de dados (MILIANI, 2010). Toda a aplicação foi hospedada em um servidor LAMP, que é um acrônimo para a combinação: Linux, Apache, MySQL e PHP. A combinação dessas tecnologias é bastante popular devido ao baixo custo de aquisição, por ser Software Livre, como também pelo desempenho e escalabilidade.</p>
+
+<p>O JQuery mobile teve papel importante na criação do layout da aplicação, pois o objetivo era criar uma interface de controle funcional a qualquer dispositivo com acesso a internet, não precisando assim criar um dispositivo para este fim. A funcionalidade do sistema ficou a cargo da aplicação PHP hospedada no servidor LAMP. Seu papel fundamental era a comunicação entre interfaces de controle e controlador de dispositivos. A aplicação realizava duas principais funções: a de recebimento dos comandos enviados pelo usuário através do protocolo HTTP e o envio destes comandos via interface USB para o Arduino, além de receber de volta algumas informações e entregar a interface de controle.</p>
+
+<h3>
+<a name="hardware" class="anchor" href="#hardware"><span class="octicon octicon-link"></span></a>Hardware</h3>
+
+<p>Durante o período de desenvolvimento de projetos em hardware é fundamental a utilização de ferramentas que auxiliem nos testes e facilitem a construção desses sistemas. Nessa perspectiva, foi desenvolvida a plataforma Arduino, que permite com facilidade, a implementação de projetos que envolvam hardware e software.</p>
+
+<p>Essa plataforma é aberta e, por isso, qualquer fabricante pode desenvolver kits baseados no original. A plataforma Arduino UNO (Baseado no Atmega 328) (ver Figura 2A) possui velocidade de trabalho de 16MHz, memória flash de 32KB, 14 portas que funcionam como entradas e saídas digitais, sendo que 6 destas podem ser usadas como saídas analógicas (PWM), possui também 6 portas de entrada analógica (Conversor ACD de 10bits), que trabalham com tensão de 0-5V (FONSECA, 2010).</p>
+
+<p>A comunicação com o computador é feita via interface USB e utiliza tensão de alimentação que pode variar entre 7 e 12 V, podendo ser alimentado tanto pela porta USB quanto por uma fonte externa.</p>
+
+<p><img src="http://omadson.files.wordpress.com/2013/12/arduino.png" alt="(A) Placa Arduino UNO (B) IDE Arduino"></p>
+
+<p>O Arduino faz uso de shields, nas quais são placas de circuito impresso normalmente fixados no topo do aparelho, através de uma conexão alimentada por pinos-conectores. Estes são expansões para ele, sendo que disponibilizam várias funções específicas, desde a manipulação de motores até os sistemas de rede sem fio (SANTOS, 2010). Para nosso sistema também foi confeccionada uma placa contendo todos os subsistemas e inserida na parte superior do Arduino, como uma espécie de shield.</p>
+
+<h3>
+<a name="firmware" class="anchor" href="#firmware"><span class="octicon octicon-link"></span></a>Firmware</h3>
+
+<p>O Arduino teve papel fundamental, tanto no hardware quanto no firmware, sua tarefa principal era receber dados da aplicação web, enviados pelo servidor e modificar o estado dos subsistemas, além de enviar de volta ao servidor o estado atual destes. A realização desta tarefa só foi possível por meio do firmware guardado dentro do microcontrolador. Para desenvolver um programa para Arduino é necessário utilizar a interface de desenvolvimento da plataforma. A mesma foi desenvolvida em Java. É muito intuitiva, como podemos ver na Figura 2B e é semelhante a qualquer código em C/C++.</p>
+
+<p>O programa sistema em questão foi implementado usando cinco rotinas: setup, loop, serialEvent, atualizar e comutar, sendo as três primeiras próprias da linguagem. A função setup é primeira função a ser chamada quando o programa inicia e é executada apenas nessa primeira vez. Esta é uma função de preparação: ela dita o comportamento dos pinos do Arduino, inicializa a porta serial e configura o pino em que o servo-motor está inserido. A função loop é chamada logo a seguir e todas as funções embarcadas nela são repetidamente executadas até que o Arduino seja reiniciado. No nosso caso, ela faz a atualização dos valores dos pinos de saída para os valores encontrados nas variáveis de controle. A função serialEvent é a função de evento serial e é testada ao final de cada interação do método loop, No nosso caso, realiza duas funções, comutação de valores das variáveis ou envio dos valores via serial. Quando um dado é recebido via serial, é analisado através de uma estrutura condicional e utilizado em um dos outros dois métodos (comutar e atualizar) para modificar o valor das variáveis de controle ou enviar os valores atuais das mesmas para o servidor. Os dois últimos métodos (comutar e atualizar) não são padrões da linguagem e foram criados para facilitar a troca de valores das variáveis e a comunicação entre o servidor e o Arduino.</p>
+
+<h2>
+<a name="constru%C3%A7%C3%A3o-do-sistema" class="anchor" href="#constru%C3%A7%C3%A3o-do-sistema"><span class="octicon octicon-link"></span></a>Construção do sistema</h2>
+
+<p>Para construção do protótipo foram necessários dois meses. Depois de escolhido o tema do projeto tornou-se necessária a divisão do seu desenvolvimento, recorrendo a sete etapas fundamentais: Planejamento, no qual foram descritos detalhadamente os princípios da ideia. Além disso, foi escolhida uma ferramenta de gestão de tempo que seria usada para otimização de tarefas, que foi o ciclo PDCA, por ser estudado em algumas disciplinas do curso de Tecnologia em Mecatrônica Industrial. A segunda etapa foi a revisão bibliográfica, onde foram estudadas todas as tecnologias e ferramentas que seriam utilizadas na implementação do protótipo. A primeira etapa prática foi a foi a criação do circuito eletrônico, e como foi dito, foi utilizada a plataforma Arduino e alguns elementos de eletrônica analógica. Em seguida partiu-se para a criação das instruções operacionais programadas para o Arduino. O próximo passo foi a criação do aplicativo que seria instalado no servidor LAMP, para tal tarefa foi utilizado JQuery Mobile e PHP. O ultimo passo, de grande importância, foi a realização de vários testes para posterior correção das falhas.</p>
+
+<h2>
+<a name="resultados-e-discuss%C3%A3o" class="anchor" href="#resultados-e-discuss%C3%A3o"><span class="octicon octicon-link"></span></a>Resultados e discussão</h2>
+
+<p>Como dito anteriormente o protótipo está baseado em três principais componentes: o servidor central, que viabiliza a comunicação entre os controladores de dispositivos e as interfaces de controle do sistema. O protótipo foi testado componente a componente, onde se pode observar a realização de todos os comandos ou ações de controle implementadas, como acionamento dos circuitos de iluminação e climatização a distância, através de uma rede LAN. A interface de controle se mostrou bastante amigável e intuitiva, além de segura, pois para acessar as páginas é preciso que o usuário esteja com uma sessão aberta, e para isso é necessário realização do login. O usuário deverá digitar seu nome de usuário e senha pré-cadastradas e clicar no botão entrar, como mostrado na figura abaixo.</p>
+
+<p><img src="http://omadson.files.wordpress.com/2013/12/login.png" alt="(A) Placa Arduino UNO (B) IDE Arduino"></p>
+
+<p>Depois de realizar o login o usuário tem permissão de acessar as outras páginas. A primeira delas é a página de Painel do sistema, na qual estão situados todos os subsistemas separados por sessões. As sessões disponíveis até o seguinte momento são: Iluminação, climatização e segurança. Além do nome do subsistema, é informada também a quantidade de elementos disponíveis, como mostrado na figura abaixo.</p>
+
+<p><img src="http://omadson.files.wordpress.com/2013/12/paineis.png" alt="(A) Placa Arduino UNO (B) IDE Arduino"></p>
+
+<p>Quando o usuário necessitar realizar algum comando sobre o sistema de iluminação, por exemplo, basta que o mesmo clique ou toque sobre o botão. Isso fará com que a página de edição do subsistema seja apresentada, como mostrado na figura acima. Ela é composta por todos os elementos do subsistema em questão, mostrando o estado de cada um deles. Para modificar o estado basta que o mesmo clique ou toque sobre o botão referente ao elemento desejado. O servidor irá receber essa requisição, enviará para o Arduino que retornará com o valor atualizado das variáveis de controle do sistema, fazendo com que o servidor envie para o usuário uma página com os valores atualizados. Como a interface de controle é baseada em um aplicativo web, qualquer dispositivo com acesso a internet pode interagir com o sistema. O sistema foi desenvolvido no intuito de, além de fornecer os benefícios da automação, ser um sistema seguro, eficiente e de fácil manipulação. Com o uso do PHP foi possível implantar métodos de criptografia para a segurança dos dados e mecanismos de bloqueios a usuários não cadastrados.</p>
+
+<p>A aplicação real do sistema se dá através do uso do mesmo hardware, firmware e software, a única mudança seria a adição de um shield ou módulo de relés, que seria usado para acionar qualquer carga ligada a ele, tais como lâmpadas, portões elétricos e condicionadores de ar. A dificuldade que foi encontrada se dá no sentido da mudança de paradigma em relação ao uso de interruptores, pois na fase que se encontra o sistema não foi desenvolvido nenhum interruptor externo, ou seja, o sistema só seria controlado através da interface gráfica. A solução que está sendo criada para isso é o uso de um painel central, instalado em algum cômodo público da residência, o mesmo comportará um conjunto de interruptores com o formato da planta baixa do local. </p>
+
+<h2>
+<a name="conclus%C3%B5es" class="anchor" href="#conclus%C3%B5es"><span class="octicon octicon-link"></span></a>Conclusões</h2>
+
+<p>A domótica pode oferecer instrumentos para tornar os lares da população mais confortáveis, seguros, práticos e eficientes, assim como, contribuir substancialmente para o atendimento à população de idade avançada e às pessoas portadoras de necessidades especiais.</p>
+
+<p>A utilização do Arduino propiciou uma fácil integração com todos os dispositivos do sistema e obteve os mesmos resultados que teriam sido obtidos caso o projeto tivesse sido executado com o uso de outros microcontroladores, que teriam de ser esquematizados com diversos outros componentes para atingir o mesmo propósito do Arduino. O projeto se mostrou eficaz no seu propósito, os experimentos práticos criaram expectativas otimistas para a continuidade do projeto, com margem para muitos aprimoramentos, não cabíveis no escopo deste trabalho, mas perfeitamente factíveis, sem necessidade de demais recursos que os já utilizados até então.</p>
+
+<h2>
+<a name="refer%C3%AAncias" class="anchor" href="#refer%C3%AAncias"><span class="octicon octicon-link"></span></a>Referências</h2>
+
+<ol>
+<li>ACHOUR, Mehdi et al. “PHP Manual”. Disponível em: <a href="http://goo.gl/yRWNP">http://goo.gl/yRWNP</a>. Acesso em: 10 set. 2012.</li>
+<li>ARDUINO. “Language Reference”. Disponível em: <a href="http://goo.gl/dvqR7">http://goo.gl/dvqR7</a>. Acesso em: 06 set. 2012.</li>
+<li>BONZANI. Caio A. M. Residências Inteligentes. São Paulo: Livraria da Física, 2004.</li>
+<li>FONSECA, Érika Guimarães Pereira da Fonseca. BEPPU, Mathyan Motta. Apostila Arduíno, Rio de Janeiro: Universidade Federal Fluminense, Outubro, 2010.</li>
+<li>MILIANI, André. Construindo Aplicações Web com PHP e MySQL. São Paulo: Novatec Editora, 2010.</li>
+<li>OLIVEIRO, Carlos Antonio José. Faça um site – PHP4 com Base de Dados MySQL Orientado por Projeto, São Paulo: Editora Érica, 2001</li>
+<li>SANTOS, Nuno Pessanha. Apostila Introdução ao Arduino, Lisboa, Portugal: Escola Naval: Departamento de Engenheiros Navais – Ramo de Armas e Eletrônica. Disponível em: <a href="http://goo.gl/B2I4y">http://goo.gl/B2I4y</a>.</li>
+</ol>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/omadson/sara/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/omadson/sara/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/omadson/sara"></a> is maintained by <a href="https://github.com/omadson">omadson</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
